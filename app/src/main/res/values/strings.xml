@@ -35,4 +35,10 @@
     <string name="enter_teacher_email">Enter teacher\'s email</string>
     <string name="course_notes">Notes about this class:</string>
     <string name="editCourseNotes">Enter class notes</string>
+    <string name="id">ID</string>
+    <string name="course_id">Course ID</string>
+    <string name="auto_set">Auto-Set</string>
+    <string name="class_notes">Class notes</string>
+    <string name="class_assignments">Assignments for this class:</string>
+    <string name="class_id">Class ID</string>
 </resources>

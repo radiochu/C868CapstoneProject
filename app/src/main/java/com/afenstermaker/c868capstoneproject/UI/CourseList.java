@@ -23,8 +23,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class CourseList extends AppCompatActivity {
     private ActivityCourseListBinding binding;
     private CourseViewModel courseViewModel;
-    private RecyclerView courseListRv;
-    private FloatingActionButton courseFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +33,8 @@ public class CourseList extends AppCompatActivity {
         View viewToBind = binding.getRoot();
         setContentView(viewToBind);
 
-        courseListRv = binding.courseRecyclerView;
-        courseFab = binding.addCourseButton;
+        RecyclerView courseListRv = binding.courseRecyclerView;
+        FloatingActionButton courseFab = binding.addCourseButton;
 
         final CourseListAdapter adapter = new CourseListAdapter(new CourseListAdapter.CourseDiff());
         courseListRv.setAdapter(adapter);
@@ -61,7 +59,7 @@ public class CourseList extends AppCompatActivity {
                     data.getStringExtra("name"),
                     data.getStringExtra("room"),
                     data.getStringExtra("teacher"),
-                    data.getIntExtra("phone", - 1),
+                    data.getStringExtra("phone"),
                     data.getStringExtra("email"),
                     data.getStringExtra("notes")
             );

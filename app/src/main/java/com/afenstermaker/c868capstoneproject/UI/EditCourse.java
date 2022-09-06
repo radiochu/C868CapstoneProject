@@ -24,14 +24,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class EditCourse extends AppCompatActivity {
+    private TextView courseID;
     private EditText courseName;
     private EditText classroom;
     private EditText teacherName;
     private EditText teacherPhone;
     private EditText teacherEmail;
     private EditText courseNotes;
-    private Button saveCourse;
-    private Button cancelCourse;
     private ActivityEditCourseBinding binding;
 
     @Override
@@ -43,14 +42,25 @@ public class EditCourse extends AppCompatActivity {
         View viewToBind = binding.getRoot();
         setContentView(viewToBind);
 
+        courseID = binding.courseIDTV;
         courseName = binding.editCourseName;
         classroom = binding.editClassroom;
         teacherName = binding.editTeacherName;
         teacherPhone = binding.editTeacherPhone;
         teacherEmail = binding.editTeacherEmail;
         courseNotes = binding.editCourseNotes;
-        saveCourse = binding.saveCourseButton;
-        cancelCourse = binding.cancelCourseButton;
+        final Button saveCourse = binding.saveCourseButton;
+        final Button cancelCourse = binding.cancelCourseButton;
+
+        if (getIntent().getExtras() != null) {
+            courseID.setText(getIntent().getStringExtra("courseID"));
+            courseName.setText(getIntent().getStringExtra("courseName"));
+            classroom.setText(getIntent().getStringExtra("classroom"));
+            teacherName.setText(getIntent().getStringExtra("teacherName"));
+            teacherPhone.setText(getIntent().getStringExtra("teacherPhone"));
+            teacherEmail.setText(getIntent().getStringExtra("teacherEmail"));
+            courseNotes.setText(getIntent().getStringExtra("courseNotes"));
+        }
 
         saveCourse.setOnClickListener(view -> {
             Intent replyIntent = new Intent();
@@ -65,12 +75,15 @@ public class EditCourse extends AppCompatActivity {
                 String email = teacherEmail.getText().toString();
                 String notes = courseNotes.getText().toString();
 
-                replyIntent.putExtra("courseName", name);
-                replyIntent.putExtra("classroom", room);
-                replyIntent.putExtra("teacherName", teacher);
-                replyIntent.putExtra("teacherPhone", phone);
-                replyIntent.putExtra("teacherEmail", email);
-                replyIntent.putExtra("courseNotes", notes);
+                if (!courseID.getText().toString().isEmpty()) {
+                    replyIntent.putExtra("courseID", courseID.getText().toString());
+                }
+                replyIntent.putExtra("name", name);
+                replyIntent.putExtra("room", room);
+                replyIntent.putExtra("teacher", teacher);
+                replyIntent.putExtra("phone", phone);
+                replyIntent.putExtra("email", email);
+                replyIntent.putExtra("notes", notes);
 
                 setResult(RESULT_OK, replyIntent);
                 finish();

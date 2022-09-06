@@ -10,11 +10,11 @@ public class Course {
     private String courseName;
     private String classroom;
     private String teacherName;
-    private int teacherPhone;
+    private String teacherPhone;
     private String teacherEmail;
     private String courseNotes;
 
-    public Course(int courseID, String courseName, String classroom, String teacherName, int teacherPhone, String teacherEmail, String courseNotes) {
+    public Course(int courseID, String courseName, String classroom, String teacherName, String teacherPhone, String teacherEmail, String courseNotes) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.classroom = classroom;
@@ -56,11 +56,11 @@ public class Course {
         this.teacherName = teacherName;
     }
 
-    public int getTeacherPhone() {
+    public String getTeacherPhone() {
         return teacherPhone;
     }
 
-    public void setTeacherPhone(int teacherPhone) {
+    public void setTeacherPhone(String teacherPhone) {
         this.teacherPhone = teacherPhone;
     }
 

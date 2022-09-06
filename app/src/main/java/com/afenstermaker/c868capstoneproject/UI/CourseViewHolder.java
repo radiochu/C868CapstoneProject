@@ -11,22 +11,25 @@ import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.databinding.CourseListItemBinding;
 
 public class CourseViewHolder extends RecyclerView.ViewHolder {
-    private final TextView courseName;
-    private final TextView classroom;
-    private final TextView teacherName;
-    private final CardView cv;
+    final TextView courseName;
+    final TextView classroom;
+    final TextView teacherName;
+    final TextView courseID;
+    final CardView cv;
 
-    public CourseViewHolder(CourseListItemBinding binding) {
+    CourseViewHolder(CourseListItemBinding binding) {
         super(binding.getRoot());
 
         courseName = binding.courseName;
         classroom = binding.classroom;
         teacherName = binding.teacherName;
+        courseID = binding.courseID;
         cv = binding.courseCardView;
 
         Context context = cv.getContext();
         cv.setOnClickListener(view -> {
             Intent intent = new Intent(context, CourseDetail.class);
+            intent.putExtra("id", Integer.parseInt(courseID.getText().toString()));
             intent.putExtra("name", courseName.getText().toString());
             intent.putExtra("classroom", classroom.getText().toString());
             intent.putExtra("teacher", teacherName.getText().toString());
@@ -35,6 +38,7 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Course course) {
+        courseID.setText(String.valueOf(course.getCourseID()));
         courseName.setText(course.getCourseName());
         classroom.setText(course.getClassroom());
         teacherName.setText(course.getTeacherName());

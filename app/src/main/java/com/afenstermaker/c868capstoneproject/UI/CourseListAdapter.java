@@ -15,9 +15,8 @@ public class CourseListAdapter extends ListAdapter<Course, CourseViewHolder> {
         super(diffCallback);
     }
 
-    @NonNull
     @Override
-    public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CourseListItemBinding binding = CourseListItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new CourseViewHolder(binding);
     }
