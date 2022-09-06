@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">C868 CapstoneProject</string>
+    <string name="school_district">Midtown School District</string>
+    <string name="student_planner">Student Planner</string>
+    <string name="classes">My Classes</string>
+    <string name="assignments">My Assignments</string>
+    <string name="reports">Reports</string>
+    <string name="add_class">Add New Class</string>
+    <string name="add_assignment">Add Assignment</string>
+    <string name="class_schedule">Class Schedule</string>
+    <string name="assignment_schedule">Assignment Schedule</string>
+    <string name="contact_list">Contact List</string>
+    <string name="contact_list_image">Contact list image</string>
+    <string name="assignment_schedule_image">Assignment schedule image</string>
+    <string name="class_schedule_image">Class schedule image</string>
+    <string name="teacher_name">Teacher Name</string>
+    <string name="classroom">Classroom</string>
+    <string name="class_name">Course Name</string>
+    <string name="assignment_name">Assignment Name</string>
+    <string name="due_date">Due Date</string>
+    <string name="assignment_type">Assignment Type</string>
+    <string name="classString">Class</string>
+    <string name="set_due_date">Set due date</string>
+    <string name="save">Save</string>
+    <string name="assignment_type_dropdown">Assignment Type Dropdown</string>
+    <string name="assignment_class_dropdown">Assignment class dropdown</string>
+    <string name="assignment_name_text_box">Enter assignment name</string>
+    <string name="set_due_date_button">Set due date button</string>
+</resources>

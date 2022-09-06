@@ -1,0 +1,34 @@
+package com.afenstermaker.c868capstoneproject.DAO;
+
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import androidx.room.Update;
+
+import com.afenstermaker.c868capstoneproject.Entity.Course;
+
+import java.util.List;
+
+@Dao
+public interface CourseDAO {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long insert(Course course);
+
+    @Update
+    void update(Course course);
+
+    @Delete
+    void delete(Course course);
+
+    @Query("SELECT * FROM course ORDER BY courseID ASC")
+    LiveData<List<Course>> getAllCourses();
+
+    @Query("SELECT courseID FROM course")
+    LiveData<List<Integer>> getAllCourseIDs();
+
+    @Query("SELECT * FROM course WHERE courseID = :courseID")
+    Course getCourseByID(int courseID);
+}
