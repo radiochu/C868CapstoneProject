@@ -1,9 +1,11 @@
 package com.afenstermaker.c868capstoneproject.UI;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afenstermaker.c868capstoneproject.R;
 import com.afenstermaker.c868capstoneproject.ViewModel.CourseViewModel;
@@ -47,22 +50,17 @@ public class EditAssignment extends AppCompatActivity {
         assignmentName = binding.editAssignmentName;
         assignmentType = binding.assignmentTypeSpinner;
         assignmentClass = binding.assignmentClassSpinner;
-        assignmentDate = binding.assignmentDateLabel;
+        assignmentDate = binding.setDueDateLabel;
         assignmentDateButton = binding.setAssignmentDateButton;
         saveAssignment = binding.saveAssignmentButton;
         cancelAssignment = binding.cancelAssignmentButton;
 
-        ArrayAdapter<Integer> classAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> classAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
         classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentClass.setAdapter(classAdapter);
 
         CourseViewModel courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
-        courseViewModel.getAllCourses().observe(this, courses -> {
-            classAdapter.clear();
-            for (int i = 0; i < courses.size(); i++) {
-                classAdapter.add(courses.get(i).getCourseID());
-            }
-        });
+        courseViewModel.getAllCourseNames().observe(this, classAdapter::addAll);
 
         ArrayAdapter<String> assignmentTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignmentTypes);
         assignmentTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -73,5 +71,76 @@ public class EditAssignment extends AppCompatActivity {
         assignmentTypes.add("Homework");
         assignmentTypes.add("Other");
         assignmentTypeAdapter.addAll(assignmentTypes);
+
+        assignmentDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
+            assignmentDateCalendar.set(android.icu.util.Calendar.YEAR, year);
+            assignmentDateCalendar.set(android.icu.util.Calendar.MONTH, monthOfYear);
+            assignmentDateCalendar.set(android.icu.util.Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateDueDateLabel();
+        };
+
+        assignmentDateButton.setOnClickListener(v -> {
+            new DatePickerDialog(EditAssignment.this, assignmentDateSetListener,
+                                 assignmentDateCalendar.get(android.icu.util.Calendar.YEAR),
+                                 assignmentDateCalendar.get(android.icu.util.Calendar.MONTH),
+                                 assignmentDateCalendar.get(android.icu.util.Calendar.DAY_OF_MONTH)).show();
+        });
+
+        saveAssignment.setOnClickListener(view -> {
+            if (!validateInput()) {
+                Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent replyIntent = new Intent();
+
+                String name = assignmentName.getText().toString();
+                String type = assignmentType.getSelectedItem().toString();
+                String courseName = assignmentClass.getSelectedItem().toString();
+                String date = assignmentDate.getText().toString();
+
+                replyIntent.putExtra("assignmentName", name);
+                replyIntent.putExtra("assignmentType", type);
+                replyIntent.putExtra("assignmentCourseID", courseName);
+                replyIntent.putExtra("assignmentDate", date);
+
+                setResult(RESULT_OK, replyIntent);
+                finish();
+            }
+        });
+
+        cancelAssignment.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(EditAssignment.this);
+            builder.setTitle(R.string.app_name);
+            builder.setMessage("Cancel without saving changes?");
+            builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                Intent replyIntent = new Intent();
+                setResult(RESULT_CANCELED, replyIntent);
+                finish();
+            });
+            builder.setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss());
+            AlertDialog alert = builder.create();
+            alert.show();
+        });
+    }
+
+    private void updateDueDateLabel() {
+        assignmentDate.setText(sdf.format(assignmentDateCalendar.getTime()));
+    }
+
+    private boolean validateInput() {
+        if (assignmentName.getText().toString().isEmpty()) {
+            assignmentName.setError("Assignment name is required");
+            return false;
+        }
+        if (assignmentDate.getText().toString().isEmpty()) {
+            assignmentDate.setError("Assignment due date is required");
+            return false;
+        }
+        if (assignmentClass.getSelectedItem().toString().isEmpty()) {
+            TextView errorText = (TextView)assignmentClass.getSelectedView();
+            errorText.setError("Assignment course is required");
+            return false;
+        }
+        return true;
     }
 }

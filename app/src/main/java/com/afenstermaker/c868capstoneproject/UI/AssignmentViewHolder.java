@@ -41,7 +41,7 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
     public void bind(@NonNull Assignment assignment) {
         assignmentName.setText(assignment.getAssignmentName());
         assignmentDate.setText(assignment.getAssignmentDate());
-        assignmentCourse.setText(assignment.getCourseID());
+        assignmentCourse.setText(assignment.getCourseName());
         assignmentType.setText(assignment.getAssignmentType());
     }
 }

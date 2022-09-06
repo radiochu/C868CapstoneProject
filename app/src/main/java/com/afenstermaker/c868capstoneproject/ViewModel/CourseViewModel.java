@@ -14,11 +14,13 @@ import java.util.List;
 public class CourseViewModel extends AndroidViewModel {
     private final Repository repo;
     private final LiveData<List<Course>> allCourses;
+    private final LiveData<List<String>> allCourseNames;
 
     public CourseViewModel(Application application) {
         super(application);
         repo = new Repository(application);
         allCourses = repo.getAllCourses();
+        allCourseNames = repo.getAllCourseNames();
     }
 
     public LiveData<List<Course>> getAllCourses() {
@@ -40,5 +42,9 @@ public class CourseViewModel extends AndroidViewModel {
 
     public void delete(int courseID) {
         repo.deleteCourse(courseID);
+    }
+
+    public LiveData<List<String>> getAllCourseNames() {
+        return allCourseNames;
     }
 }

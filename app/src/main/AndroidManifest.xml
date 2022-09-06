@@ -14,7 +14,13 @@
             android:theme="@style/Theme.C868CapstoneProject"
             tools:targetApi="31">
         <activity
-                android:name=".EditAssignment"
+                android:name=".UI.CourseDetail"
+                android:exported="false" />
+        <activity
+                android:name=".UI.EditCourse"
+                android:exported="false" />
+        <activity
+                android:name=".UI.EditAssignment"
                 android:exported="false" />
         <activity
                 android:name=".UI.AssignmentDetail"

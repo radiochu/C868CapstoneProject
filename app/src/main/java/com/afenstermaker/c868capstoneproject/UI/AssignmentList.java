@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.afenstermaker.c868capstoneproject.Entity.Assignment;
+import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.R;
 import com.afenstermaker.c868capstoneproject.ViewModel.AssignmentViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityAssignmentListBinding;
@@ -46,24 +47,22 @@ public class AssignmentList extends AppCompatActivity {
 
         assignmentFab.setOnClickListener(view -> {
             Intent intent = new Intent(AssignmentList.this, EditAssignment.class);
-            startForResult.launch(new Intent(this, EditAssignment.class));
+            startActivityForResult(intent, 2);
         });
     }
 
-    ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode() == RESULT_OK) {
-                Intent data = result.getData();
-                Assignment assignment = new Assignment(
-                        0,
-                        data.getStringExtra(EditAssignment.EXTRA_REPLY_TITLE),
-                        data.getStringExtra(EditAssignment.EXTRA_REPLY_DESCRIPTION),
-                        data.getStringExtra(EditAssignment.EXTRA_REPLY_DUE_DATE),
-                        data.getStringExtra(EditAssignment.EXTRA_REPLY_COURSE_ID)
-                );
-                assignmentViewModel.insert(assignment);
-            }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2 && resultCode == RESULT_OK) {
+            Assignment assignment = new Assignment(
+                    0,
+                    data.getStringExtra("className"),
+                    data.getStringExtra("name"),
+                    data.getStringExtra("type"),
+                    data.getStringExtra("date")
+            );
+            assignment.setAssignmentID(assignmentViewModel.insert(assignment));
         }
-    });
+    }
 }
