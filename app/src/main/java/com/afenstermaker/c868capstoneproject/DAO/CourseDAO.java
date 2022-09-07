@@ -14,10 +14,10 @@ import java.util.List;
 
 @Dao
 public interface CourseDAO {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(Course course);
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(Course course);
 
     @Delete

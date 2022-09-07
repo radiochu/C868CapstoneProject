@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.R;
 import com.afenstermaker.c868capstoneproject.ViewModel.CourseViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityEditAssignmentBinding;
@@ -38,6 +39,8 @@ public class EditAssignment extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener assignmentDateSetListener;
     private String dateFormat = "MM/dd/yyyy";
     private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+    private ArrayList<Integer> courseIDs = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +65,23 @@ public class EditAssignment extends AppCompatActivity {
         assignmentClass.setAdapter(classAdapter);
 
         CourseViewModel courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
-        courseViewModel.getAllCourseNames().observe(this, classAdapter::addAll);
+        courseViewModel.getAllCourses().observe(this, courses -> {
+            classAdapter.clear();
+            for (int i = 0; i < courses.size(); i++) {
+                classAdapter.add(courses.get(i).toString());
+                courseIDs.add(courses.get(i).getCourseID());
+            }
+        });
 
-        ArrayAdapter<String> assignmentTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignmentTypes);
+        ArrayAdapter<String> assignmentTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, assignmentTypes);
         assignmentTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        assignmentType.setAdapter(assignmentTypeAdapter);
         assignmentTypes.clear();
         assignmentTypes.add("Quiz");
         assignmentTypes.add("Test");
         assignmentTypes.add("Project");
         assignmentTypes.add("Homework");
         assignmentTypes.add("Other");
-        assignmentTypeAdapter.addAll(assignmentTypes);
+        assignmentType.setAdapter(assignmentTypeAdapter);
 
         if (getIntent().getExtras() != null) {
             assignmentID.setText(getIntent().getStringExtra("ID"));
@@ -104,17 +112,19 @@ public class EditAssignment extends AppCompatActivity {
             else {
                 Intent replyIntent = new Intent();
                 if (!assignmentID.getText().toString().isEmpty()) {
-                    replyIntent.putExtra("assignmentID", assignmentID.getText().toString());
+                    replyIntent.putExtra("ID", assignmentID.getText().toString());
                 }
                 String name = assignmentName.getText().toString();
                 String type = assignmentType.getSelectedItem().toString();
                 String courseName = assignmentClass.getSelectedItem().toString();
+                int courseID = Integer.parseInt(String.valueOf(assignmentClass.getSelectedItem().toString().charAt(0)));
                 String date = assignmentDate.getText().toString();
 
-                replyIntent.putExtra("assignmentName", name);
-                replyIntent.putExtra("assignmentType", type);
-                replyIntent.putExtra("assignmentCourseID", courseName);
-                replyIntent.putExtra("assignmentDate", date);
+                replyIntent.putExtra("name", name);
+                replyIntent.putExtra("type", type);
+                replyIntent.putExtra("class", courseName);
+                replyIntent.putExtra("courseID", courseID);
+                replyIntent.putExtra("dueDate", date);
 
                 setResult(RESULT_OK, replyIntent);
                 finish();

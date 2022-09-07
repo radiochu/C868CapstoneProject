@@ -8,13 +8,15 @@ public class Assignment {
     @PrimaryKey(autoGenerate = true)
     private int assignmentID;
     private String courseName;
+    private int courseID;
     private String assignmentName;
     private String assignmentType;
     private String assignmentDate;
 
-    public Assignment(int assignmentID, String courseName, String assignmentName, String assignmentType, String assignmentDate) {
+    public Assignment(int assignmentID, String courseName, int courseID, String assignmentName, String assignmentType, String assignmentDate) {
         this.assignmentID = assignmentID;
         this.courseName = courseName;
+        this.courseID = courseID;
         this.assignmentName = assignmentName;
         this.assignmentType = assignmentType;
         this.assignmentDate = assignmentDate;
@@ -34,6 +36,14 @@ public class Assignment {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public int getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
     public String getAssignmentName() {

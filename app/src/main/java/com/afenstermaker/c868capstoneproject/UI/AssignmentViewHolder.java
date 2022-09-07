@@ -17,6 +17,7 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
     final TextView assignmentDate;
     final TextView assignmentCourse;
     final TextView assignmentType;
+    final TextView assessmentClassID;
     final CardView cv;
 
     AssignmentViewHolder(AssignmentListItemBinding binding) {
@@ -27,15 +28,16 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
         assignmentCourse = binding.assignmentCourse;
         assignmentDate = binding.assignmentDate;
         assignmentType = binding.assignmentType;
+        assessmentClassID = binding.assignmentClassID;
         cv = binding.assignmentCardView;
 
         Context context = cv.getContext();
         cv.setOnClickListener(view -> {
             Intent intent = new Intent(context, AssignmentDetail.class);
-            intent.putExtra("id", Integer.parseInt(assignmentID.getText().toString()));
+            intent.putExtra("ID", assignmentID.getText().toString());
             intent.putExtra("name", assignmentName.getText().toString());
-            intent.putExtra("date", assignmentDate.getText().toString());
-            intent.putExtra("className", assignmentCourse.getText().toString());
+            intent.putExtra("dueDate", assignmentDate.getText().toString());
+            intent.putExtra("class", assignmentCourse.getText().toString());
             intent.putExtra("type", assignmentType.getText().toString());
             context.startActivity(intent);
         });
@@ -46,6 +48,7 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
         assignmentName.setText(assignment.getAssignmentName());
         assignmentDate.setText(assignment.getAssignmentDate());
         assignmentCourse.setText(assignment.getCourseName());
+        assessmentClassID.setText(String.valueOf(assignment.getCourseID()));
         assignmentType.setText(assignment.getAssignmentType());
     }
 }

@@ -33,7 +33,7 @@ public class AssignmentDetail extends AppCompatActivity {
         assignmentClass = binding.assignmentDetailCourseID;
 
         if (getIntent().getExtras() != null) {
-            assignmentID.setText(getIntent().getStringExtra("assignmentID"));
+            assignmentID.setText(getIntent().getStringExtra("ID"));
             assignmentName.setText(getIntent().getStringExtra("name"));
             assignmentType.setText(getIntent().getStringExtra("type"));
             assignmentDueDate.setText(getIntent().getStringExtra("dueDate"));

@@ -58,10 +58,11 @@ public class AssignmentList extends AppCompatActivity {
         if (requestCode == 2 && resultCode == RESULT_OK) {
             Assignment assignment = new Assignment(
                     0,
-                    data.getStringExtra("className"),
+                    data.getStringExtra("class"),
+                    data.getIntExtra("courseID", -1),
                     data.getStringExtra("name"),
                     data.getStringExtra("type"),
-                    data.getStringExtra("date")
+                    data.getStringExtra("dueDate")
             );
             assignment.setAssignmentID(assignmentViewModel.insert(assignment));
         }

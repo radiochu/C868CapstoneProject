@@ -1,6 +1,7 @@
 package com.afenstermaker.c868capstoneproject.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.afenstermaker.c868capstoneproject.R;
+import com.afenstermaker.c868capstoneproject.ViewModel.AssignmentViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityCourseDetailBinding;
 
 public class CourseDetail extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class CourseDetail extends AppCompatActivity {
     private TextView teacherEmail;
     private TextView courseNotes;
     private ActivityCourseDetailBinding binding;
+    private AssignmentViewModel assignmentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,13 @@ public class CourseDetail extends AppCompatActivity {
         assignmentsRV.setAdapter(adapter);
         assignmentsRV.setLayoutManager(new LinearLayoutManager(this));
 
+        assignmentViewModel = new ViewModelProvider(this).get(AssignmentViewModel.class);
+        assignmentViewModel.getAssignmentsByCourse(getIntent().getIntExtra("id", -1)).observe(this, assignments -> {
+            adapter.submitList(assignments);
+        });
+
         if (getIntent().getExtras() != null) {
-            courseID.setText(getIntent().getStringExtra("courseID"));
+            courseID.setText(String.valueOf(getIntent().getIntExtra("id", -1)));
             courseName.setText(getIntent().getStringExtra("name"));
             classroom.setText(getIntent().getStringExtra("room"));
             teacherName.setText(getIntent().getStringExtra("teacher"));

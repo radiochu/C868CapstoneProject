@@ -1,5 +1,6 @@
 package com.afenstermaker.c868capstoneproject.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -78,5 +79,11 @@ public class Course {
 
     public void setCourseNotes(String courseNotes) {
         this.courseNotes = courseNotes;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return courseID + ": " + courseName;
     }
 }

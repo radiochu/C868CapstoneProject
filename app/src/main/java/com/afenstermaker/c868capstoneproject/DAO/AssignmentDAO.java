@@ -26,7 +26,7 @@ public interface AssignmentDAO {
     @Query("SELECT * FROM Assignment ORDER BY assignmentID ASC")
     LiveData<List<Assignment>> getAllAssignments();
 
-    @Query("SELECT * FROM Assignment WHERE courseName = :courseID")
+    @Query("SELECT * FROM Assignment WHERE courseID = :courseID")
     LiveData<List<Assignment>> getAssignmentsByCourse(int courseID);
 
     @Query("SELECT * FROM Assignment WHERE assignmentID = :assignmentID")

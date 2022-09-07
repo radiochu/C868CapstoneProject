@@ -91,7 +91,7 @@
             android:layout_marginStart="8dp" />
 
     <TextView
-            android:text="@string/due_date"
+            android:hint="@string/due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/set_due_date_label"
