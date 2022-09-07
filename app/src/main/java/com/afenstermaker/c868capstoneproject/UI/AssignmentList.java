@@ -43,11 +43,12 @@ public class AssignmentList extends AppCompatActivity {
         assignmentListRv.setLayoutManager(new LinearLayoutManager(this));
 
         assignmentViewModel = new ViewModelProvider(this).get(AssignmentViewModel.class);
-        assignmentViewModel.getAllAssignments().observe(this, adapter::submitList);
+        assignmentViewModel.getAllAssignments().observe(this, assignments -> {
+            adapter.submitList(assignments);
+        });
 
         assignmentFab.setOnClickListener(view -> {
-            Intent intent = new Intent(AssignmentList.this, EditAssignment.class);
-            startActivityForResult(intent, 2);
+            startActivityForResult(new Intent(AssignmentList.this, EditAssignment.class), 2);
         });
     }
 

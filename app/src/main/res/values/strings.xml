@@ -41,4 +41,5 @@
     <string name="class_notes">Class notes</string>
     <string name="class_assignments">Assignments for this class:</string>
     <string name="class_id">Class ID</string>
+    <string name="assignment_id">Assignment ID</string>
 </resources>

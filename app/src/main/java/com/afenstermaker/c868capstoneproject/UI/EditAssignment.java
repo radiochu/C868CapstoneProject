@@ -28,6 +28,7 @@ public class EditAssignment extends AppCompatActivity {
     private Spinner assignmentType;
     private Spinner assignmentClass;
     private TextView assignmentDate;
+    private TextView assignmentID;
     private Button assignmentDateButton;
     private Button saveAssignment;
     private Button cancelAssignment;
@@ -54,6 +55,7 @@ public class EditAssignment extends AppCompatActivity {
         assignmentDateButton = binding.setAssignmentDateButton;
         saveAssignment = binding.saveAssignmentButton;
         cancelAssignment = binding.cancelAssignmentButton;
+        assignmentID = binding.assignmentIDTV;
 
         ArrayAdapter<String> classAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
         classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -65,12 +67,21 @@ public class EditAssignment extends AppCompatActivity {
         ArrayAdapter<String> assignmentTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignmentTypes);
         assignmentTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentType.setAdapter(assignmentTypeAdapter);
+        assignmentTypes.clear();
         assignmentTypes.add("Quiz");
         assignmentTypes.add("Test");
         assignmentTypes.add("Project");
         assignmentTypes.add("Homework");
         assignmentTypes.add("Other");
         assignmentTypeAdapter.addAll(assignmentTypes);
+
+        if (getIntent().getExtras() != null) {
+            assignmentID.setText(getIntent().getStringExtra("ID"));
+            assignmentName.setText(getIntent().getStringExtra("name"));
+            assignmentDate.setText(getIntent().getStringExtra("date"));
+            assignmentClass.setSelection(classAdapter.getPosition(getIntent().getStringExtra("class")));
+            assignmentType.setSelection(assignmentTypeAdapter.getPosition(getIntent().getStringExtra("type")));
+        }
 
         assignmentDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
             assignmentDateCalendar.set(android.icu.util.Calendar.YEAR, year);
@@ -92,7 +103,9 @@ public class EditAssignment extends AppCompatActivity {
             }
             else {
                 Intent replyIntent = new Intent();
-
+                if (!assignmentID.getText().toString().isEmpty()) {
+                    replyIntent.putExtra("assignmentID", assignmentID.getText().toString());
+                }
                 String name = assignmentName.getText().toString();
                 String type = assignmentType.getSelectedItem().toString();
                 String courseName = assignmentClass.getSelectedItem().toString();

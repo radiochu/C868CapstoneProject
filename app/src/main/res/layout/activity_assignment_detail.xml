@@ -6,4 +6,120 @@
         android:layout_height="match_parent"
         tools:context=".UI.AssignmentDetail">
 
+    <TextView
+            android:text="@string/class_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/assignmentDetailCourseIDLabel"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailID" />
+
+    <TextView
+            android:text="@string/class_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/assignmentDetailCourseID"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailCourseIDLabel" />
+
+    <TextView
+            android:text="@string/assignment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/assignmentDetailNameLabel" />
+
+    <TextView
+            android:text="@string/assignment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:id="@+id/assignmentDetailName"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailNameLabel" />
+
+    <TextView
+            android:text="@string/assignment_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/assignmentDetailIDLabel" />
+
+    <TextView
+            android:text="@string/assignment_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/assignmentDetailID"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailIDLabel" />
+
+    <TextView
+            android:text="@string/assignment_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assignmentDetailTypeLabel"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailName"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" />
+
+    <TextView
+            android:text="@string/assignment_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:id="@+id/assignmentDetailType"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailTypeLabel" />
+
+    <TextView
+            android:text="@string/due_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/assignmentDetailDueDateLabel"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailType"
+            android:layout_marginTop="16dp" />
+
+    <TextView
+            android:text="@string/due_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:id="@+id/assignmentDetailDueDate"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/assignmentDetailDueDateLabel" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,15 +12,17 @@ import com.afenstermaker.c868capstoneproject.Entity.Assignment;
 import com.afenstermaker.c868capstoneproject.databinding.AssignmentListItemBinding;
 
 public class AssignmentViewHolder extends RecyclerView.ViewHolder {
-    private final TextView assignmentName;
-    private final TextView assignmentDate;
-    private final TextView assignmentCourse;
-    private final TextView assignmentType;
-    private final CardView cv;
+    final TextView assignmentID;
+    final TextView assignmentName;
+    final TextView assignmentDate;
+    final TextView assignmentCourse;
+    final TextView assignmentType;
+    final CardView cv;
 
-    public AssignmentViewHolder(AssignmentListItemBinding binding) {
+    AssignmentViewHolder(AssignmentListItemBinding binding) {
         super(binding.getRoot());
 
+        assignmentID = binding.assignmentID;
         assignmentName = binding.assignmentName;
         assignmentCourse = binding.assignmentCourse;
         assignmentDate = binding.assignmentDate;
@@ -30,15 +32,17 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
         Context context = cv.getContext();
         cv.setOnClickListener(view -> {
             Intent intent = new Intent(context, AssignmentDetail.class);
+            intent.putExtra("id", Integer.parseInt(assignmentID.getText().toString()));
             intent.putExtra("name", assignmentName.getText().toString());
             intent.putExtra("date", assignmentDate.getText().toString());
-            intent.putExtra("course", assignmentCourse.getText().toString());
+            intent.putExtra("className", assignmentCourse.getText().toString());
             intent.putExtra("type", assignmentType.getText().toString());
             context.startActivity(intent);
         });
     }
 
-    public void bind(@NonNull Assignment assignment) {
+    public void bind(Assignment assignment) {
+        assignmentID.setText(String.valueOf(assignment.getAssignmentID()));
         assignmentName.setText(assignment.getAssignmentName());
         assignmentDate.setText(assignment.getAssignmentDate());
         assignmentCourse.setText(assignment.getCourseName());
