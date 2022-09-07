@@ -17,7 +17,6 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
     final TextView assignmentDate;
     final TextView assignmentCourse;
     final TextView assignmentType;
-    final TextView assessmentClassID;
     final CardView cv;
 
     AssignmentViewHolder(AssignmentListItemBinding binding) {
@@ -28,7 +27,6 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
         assignmentCourse = binding.assignmentCourse;
         assignmentDate = binding.assignmentDate;
         assignmentType = binding.assignmentType;
-        assessmentClassID = binding.assignmentClassID;
         cv = binding.assignmentCardView;
 
         Context context = cv.getContext();
@@ -48,7 +46,6 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
         assignmentName.setText(assignment.getAssignmentName());
         assignmentDate.setText(assignment.getAssignmentDate());
         assignmentCourse.setText(assignment.getCourseName());
-        assessmentClassID.setText(String.valueOf(assignment.getCourseID()));
         assignmentType.setText(assignment.getAssignmentType());
     }
 }
