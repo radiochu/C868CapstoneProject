@@ -5,8 +5,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.afenstermaker.c868capstoneproject.R;
@@ -21,6 +24,7 @@ public class CourseDetail extends AppCompatActivity {
     private TextView teacherPhone;
     private TextView teacherEmail;
     private TextView courseNotes;
+    private ImageButton shareNotes;
     private ActivityCourseDetailBinding binding;
     private AssignmentViewModel assignmentViewModel;
 
@@ -40,6 +44,7 @@ public class CourseDetail extends AppCompatActivity {
         teacherPhone = binding.courseDetailTeacherPhone;
         teacherEmail = binding.courseDetailTeacherEmail;
         courseNotes = binding.courseDetailNotes;
+        shareNotes = binding.shareNotesButton;
 
         RecyclerView assignmentsRV = binding.courseDetailAssignmentsRV;
         final AssignmentListAdapter adapter = new AssignmentListAdapter(new AssignmentListAdapter.AssignmentDiff());
@@ -60,5 +65,16 @@ public class CourseDetail extends AppCompatActivity {
             teacherEmail.setText(getIntent().getStringExtra("email"));
             courseNotes.setText(getIntent().getStringExtra("notes"));
         }
+
+        shareNotes.setOnClickListener(view -> {
+            String notes = courseNotes.getText().toString();
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, notes);
+            shareIntent.setType("text/plain");
+
+            Intent share = Intent.createChooser(shareIntent, null);
+            startActivity(share);
+        });
     }
 }

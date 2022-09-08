@@ -35,6 +35,7 @@
     <string name="enter_teacher_email">Enter teacher\'s email</string>
     <string name="course_notes">Notes about this class:</string>
     <string name="editCourseNotes">Enter class notes</string>
+    <string name="share_class_notes">Share class notes</string>
     <string name="id">ID</string>
     <string name="course_id">Course ID</string>
     <string name="auto_set">Auto-Set</string>
