@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button toCourseList;
     private Button toAssessmentList;
     private Button toReports;
+    public static int alertNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

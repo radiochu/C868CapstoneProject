@@ -2,12 +2,24 @@ package com.afenstermaker.c868capstoneproject.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afenstermaker.c868capstoneproject.AlarmReceiver;
+import com.afenstermaker.c868capstoneproject.MainActivity;
 import com.afenstermaker.c868capstoneproject.R;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityAssignmentDetailBinding;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Locale;
 
 public class AssignmentDetail extends AppCompatActivity {
     private TextView assignmentID;
@@ -15,7 +27,10 @@ public class AssignmentDetail extends AppCompatActivity {
     private TextView assignmentType;
     private TextView assignmentDueDate;
     private TextView assignmentClass;
+    private ImageButton setAlert;
     private ActivityAssignmentDetailBinding binding;
+    String dateFormat = "MM/dd/yyyy";
+    SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +41,14 @@ public class AssignmentDetail extends AppCompatActivity {
         View viewToBind = binding.getRoot();
         setContentView(viewToBind);
 
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
         assignmentID = binding.assignmentDetailID;
         assignmentName = binding.assignmentDetailName;
         assignmentType = binding.assignmentDetailType;
         assignmentDueDate = binding.assignmentDetailDueDate;
         assignmentClass = binding.assignmentDetailCourseID;
+        setAlert = binding.dueDateAlertButton;
 
         if (getIntent().getExtras() != null) {
             assignmentID.setText(getIntent().getStringExtra("ID"));
@@ -39,5 +57,21 @@ public class AssignmentDetail extends AppCompatActivity {
             assignmentDueDate.setText(getIntent().getStringExtra("dueDate"));
             assignmentClass.setText(getIntent().getStringExtra("class"));
         }
+
+            setAlert.setOnClickListener(v -> {
+            String date = assignmentDueDate.getText().toString();
+            Date startDate = null;
+            try {
+                startDate = sdf.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long trigger = startDate.getTime();
+            Intent intent = new Intent(this, AlarmReceiver.class);
+            intent.putExtra("message", "Your assignment " + assignmentName.getText().toString() + " is due today!");
+            PendingIntent notifyPendingIntent = PendingIntent.getBroadcast(this, MainActivity.alertNum++, intent, PendingIntent.FLAG_IMMUTABLE);
+            Toast.makeText(AssignmentDetail.this, "Due Date Alert Set", Toast.LENGTH_SHORT).show();
+            alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, notifyPendingIntent);
+        });
     }
 }

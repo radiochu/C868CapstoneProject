@@ -32,6 +32,10 @@ public class AssignmentViewModel extends AndroidViewModel {
         return repo.getAssignmentByID(assignmentID);
     }
 
+    public LiveData<List<Assignment>> getAssignmentsByDate() {
+        return repo.getAssignmentsByDate();
+    }
+
     public int insert(Assignment assignment) {
         repo.insertAssignment(assignment);
         return assignment.getAssignmentID();

@@ -14,22 +14,34 @@
             android:theme="@style/Theme.C868CapstoneProject"
             tools:targetApi="31">
         <activity
+                android:name=".UI.AssignmentScheduleReport"
+                android:exported="false" />
+        <activity
+                android:name=".UI.classScheduleReport"
+                android:exported="false" />
+
+        <receiver
+                android:name=".AlarmReceiver"
+                android:enabled="true"
+                android:exported="true" />
+
+        <activity
                 android:name=".UI.CourseDetail"
                 android:exported="false"
-                android:parentActivityName=".UI.CourseList"/>
+                android:parentActivityName=".UI.CourseList" />
         <activity
                 android:name=".UI.EditCourse"
                 android:exported="false"
-                android:parentActivityName=".UI.CourseDetail"/>
+                android:parentActivityName=".UI.CourseDetail" />
         <activity
                 android:name=".UI.EditAssignment"
                 android:exported="false"
-                android:parentActivityName=".UI.AssignmentDetail"/>
+                android:parentActivityName=".UI.AssignmentDetail" />
         <activity
                 android:name=".UI.AssignmentDetail"
                 android:exported="false"
                 android:label="View Assignment"
-                android:parentActivityName=".UI.AssignmentList"/>
+                android:parentActivityName=".UI.AssignmentList" />
         <activity
                 android:name=".UI.Reports"
                 android:exported="false"

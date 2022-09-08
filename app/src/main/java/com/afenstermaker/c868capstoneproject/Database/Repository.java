@@ -92,4 +92,8 @@ public class Repository {
             assignmentDAO.delete(assignment);
         });
     }
+
+    public LiveData<List<Assignment>> getAssignmentsByDate() {
+        return assignmentDAO.getAssignmentsByDate();
+    }
 }

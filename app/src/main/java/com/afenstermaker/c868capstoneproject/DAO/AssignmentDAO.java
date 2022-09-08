@@ -31,4 +31,7 @@ public interface AssignmentDAO {
 
     @Query("SELECT * FROM Assignment WHERE assignmentID = :assignmentID")
     Assignment getAssignmentByID(int assignmentID);
+
+    @Query("SELECT * FROM Assignment ORDER BY assignmentDate ASC")
+    LiveData<List<Assignment>> getAssignmentsByDate();
 }
