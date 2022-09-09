@@ -34,4 +34,7 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM course WHERE courseID = :courseID")
     Course getCourseByID(int courseID);
+
+    @Query("SELECT * FROM course WHERE teacherName || teacherEmail || teacherPhone LIKE '%' || :searchQuery || '%'")
+    LiveData<List<Course>> searchCourses(String searchQuery);
 }

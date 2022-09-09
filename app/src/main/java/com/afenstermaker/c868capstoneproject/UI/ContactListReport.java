@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -23,7 +25,8 @@ public class ContactListReport extends AppCompatActivity {
     private TextView reportDate;
     private RecyclerView rv;
     private CourseViewModel courseViewModel;
-    private SearchView contactSearch;
+    private ImageButton searchButton;
+    private EditText searchField;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mma", Locale.getDefault());
 
     @Override
@@ -37,7 +40,8 @@ public class ContactListReport extends AppCompatActivity {
 
         reportDate = binding.reportDate;
         rv = binding.contactListRv;
-        contactSearch = binding.contactSearch;
+        searchButton = binding.searchButton;
+        searchField = binding.contactSearch;
 
         reportDate.setText(LocalDateTime.now().format(formatter));
 
@@ -48,17 +52,9 @@ public class ContactListReport extends AppCompatActivity {
         courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
         courseViewModel.getAllCourses().observe(this, adapter::submitList);
 
-        contactSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
+        searchButton.setOnClickListener(v -> {
+            String searchQuery = searchField.getText().toString();
+            courseViewModel.searchCourses(searchQuery).observe(this, adapter::submitList);
         });
     }
 }

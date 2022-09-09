@@ -46,4 +46,6 @@
     <string name="add_due_date_alert">Add due date alert</string>
     <string name="current_as_of">Current as of:</string>
     <string name="report_date">Report Date</string>
+    <string name="search_teachers">Search Teachers</string>
+    <string name="search_contact_list">Search contact list</string>
 </resources>

@@ -96,4 +96,8 @@ public class Repository {
     public LiveData<List<Assignment>> getAssignmentsByDate() {
         return assignmentDAO.getAssignmentsByDate();
     }
+
+    public LiveData<List<Course>> searchCourses(String searchQuery) {
+        return courseDAO.searchCourses(searchQuery);
+    }
 }

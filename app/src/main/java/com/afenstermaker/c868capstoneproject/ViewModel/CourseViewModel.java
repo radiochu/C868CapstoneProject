@@ -42,4 +42,7 @@ public class CourseViewModel extends AndroidViewModel {
         repo.deleteCourse(courseID);
     }
 
+    public LiveData<List<Course>> searchCourses(String searchQuery) {
+        return repo.searchCourses(searchQuery);
+    }
 }
