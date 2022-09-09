@@ -46,13 +46,13 @@ public class Reports extends AppCompatActivity {
 //            }
 //        });
 
-//        teacherContactReport.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Reports.this, TeacherContactReport.class);
-//                startActivity(intent);
-//            }
-//        });
+        teacherContactReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Reports.this, ContactListReport.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

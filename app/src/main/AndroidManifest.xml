@@ -14,10 +14,13 @@
             android:theme="@style/Theme.C868CapstoneProject"
             tools:targetApi="31">
         <activity
+                android:name=".UI.ContactListReport"
+                android:exported="false" />
+        <activity
                 android:name=".UI.AssignmentScheduleReport"
                 android:exported="false" />
         <activity
-                android:name=".UI.classScheduleReport"
+                android:name=".UI.ClassScheduleReport"
                 android:exported="false" />
 
         <receiver

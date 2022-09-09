@@ -27,9 +27,6 @@ public class AssignmentScheduleReport extends AppCompatActivity {
     private AssignmentViewModel assignmentViewModel;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mma", Locale.getDefault());
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
