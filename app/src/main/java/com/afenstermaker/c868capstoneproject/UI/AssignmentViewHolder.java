@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afenstermaker.c868capstoneproject.Entity.Assignment;
 import com.afenstermaker.c868capstoneproject.databinding.AssignmentListItemBinding;
 
+import java.text.SimpleDateFormat;
+
 public class AssignmentViewHolder extends RecyclerView.ViewHolder {
     final TextView assignmentID;
     final TextView assignmentName;
@@ -18,6 +20,8 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
     final TextView assignmentCourse;
     final TextView assignmentType;
     final CardView cv;
+    private String dateFormat = "MM/dd/yyyy";
+    private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 
     AssignmentViewHolder(AssignmentListItemBinding binding) {
         super(binding.getRoot());
@@ -44,7 +48,7 @@ public class AssignmentViewHolder extends RecyclerView.ViewHolder {
     public void bind(Assignment assignment) {
         assignmentID.setText(String.valueOf(assignment.getAssignmentID()));
         assignmentName.setText(assignment.getAssignmentName());
-        assignmentDate.setText(assignment.getAssignmentDate());
+        assignmentDate.setText(sdf.format(assignment.getAssignmentDate()));
         assignmentCourse.setText(assignment.getCourseName());
         assignmentType.setText(assignment.getAssignmentType());
     }

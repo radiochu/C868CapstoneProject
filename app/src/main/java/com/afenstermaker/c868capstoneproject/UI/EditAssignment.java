@@ -23,6 +23,7 @@ import com.afenstermaker.c868capstoneproject.databinding.ActivityEditAssignmentB
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class EditAssignment extends AppCompatActivity {
     private EditText assignmentName;
@@ -86,7 +87,7 @@ public class EditAssignment extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             assignmentID.setText(getIntent().getStringExtra("ID"));
             assignmentName.setText(getIntent().getStringExtra("name"));
-            assignmentDate.setText(getIntent().getStringExtra("date"));
+            assignmentDate.setText((int) getIntent().getLongExtra("date", -1));
             assignmentClass.setSelection(classAdapter.getPosition(getIntent().getStringExtra("class")));
             assignmentType.setSelection(assignmentTypeAdapter.getPosition(getIntent().getStringExtra("type")));
         }
@@ -118,13 +119,13 @@ public class EditAssignment extends AppCompatActivity {
                 String type = assignmentType.getSelectedItem().toString();
                 String courseName = assignmentClass.getSelectedItem().toString();
                 int courseID = Integer.parseInt(String.valueOf(assignmentClass.getSelectedItem().toString().charAt(0)));
-                String date = assignmentDate.getText().toString();
+                Date date = assignmentDateCalendar.getTime();
 
                 replyIntent.putExtra("name", name);
                 replyIntent.putExtra("type", type);
                 replyIntent.putExtra("class", courseName);
                 replyIntent.putExtra("courseID", courseID);
-                replyIntent.putExtra("dueDate", date);
+                replyIntent.putExtra("dueDate", date.getTime());
 
                 setResult(RESULT_OK, replyIntent);
                 finish();

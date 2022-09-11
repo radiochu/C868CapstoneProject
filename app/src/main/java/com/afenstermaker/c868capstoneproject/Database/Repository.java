@@ -100,4 +100,8 @@ public class Repository {
     public LiveData<List<Course>> searchCourses(String searchQuery) {
         return courseDAO.searchCourses(searchQuery);
     }
+
+    public LiveData<List<Course>> getCoursesByDate() {
+        return courseDAO.getCoursesByDate();
+    }
 }

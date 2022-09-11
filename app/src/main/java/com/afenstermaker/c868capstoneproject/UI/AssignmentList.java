@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,11 +21,17 @@ import com.afenstermaker.c868capstoneproject.ViewModel.AssignmentViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityAssignmentListBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+
 public class AssignmentList extends AppCompatActivity {
     private ActivityAssignmentListBinding binding;
     private AssignmentViewModel assignmentViewModel;
     private RecyclerView assignmentListRv;
     private FloatingActionButton assignmentFab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +63,15 @@ public class AssignmentList extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 2 && resultCode == RESULT_OK) {
+            Date date = new Date(data.getLongExtra("dueDate", -1));
             Assignment assignment = new Assignment(
                     0,
                     data.getStringExtra("class"),
                     data.getIntExtra("courseID", -1),
                     data.getStringExtra("name"),
                     data.getStringExtra("type"),
-                    data.getStringExtra("dueDate")
+                    date
+
             );
             assignment.setAssignmentID(assignmentViewModel.insert(assignment));
         }

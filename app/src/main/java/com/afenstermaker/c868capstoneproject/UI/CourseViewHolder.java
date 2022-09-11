@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.databinding.CourseListItemBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CourseViewHolder extends RecyclerView.ViewHolder {
     final TextView courseName;
     final TextView classroom;
@@ -20,6 +23,9 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
     String teacherPhone;
     String teacherEmail;
     String courseNotes;
+    String startDate;
+    private String dateFormat = "MM/dd/yyyy";
+    private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 
     CourseViewHolder(CourseListItemBinding binding) {
         super(binding.getRoot());
@@ -40,6 +46,7 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
             intent.putExtra("phone", teacherPhone);
             intent.putExtra("email", teacherEmail);
             intent.putExtra("notes", courseNotes);
+            intent.putExtra("startDate", startDate);
             context.startActivity(intent);
         });
     }
@@ -52,5 +59,6 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
         teacherPhone = course.getTeacherPhone();
         teacherEmail = course.getTeacherEmail();
         courseNotes = course.getCourseNotes();
+        startDate = (sdf.format(course.getStartDate()));
     }
 }

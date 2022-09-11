@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +26,10 @@ public class CourseDetail extends AppCompatActivity {
     private TextView teacherEmail;
     private TextView courseNotes;
     private ImageButton shareNotes;
+    private TextView startDate;
     private ActivityCourseDetailBinding binding;
     private AssignmentViewModel assignmentViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class CourseDetail extends AppCompatActivity {
         teacherEmail = binding.courseDetailTeacherEmail;
         courseNotes = binding.courseDetailNotes;
         shareNotes = binding.shareNotesButton;
+        startDate = binding.startDateDisplay;
 
         RecyclerView assignmentsRV = binding.courseDetailAssignmentsRV;
         final AssignmentListAdapter adapter = new AssignmentListAdapter(new AssignmentListAdapter.AssignmentDiff());
@@ -64,6 +68,7 @@ public class CourseDetail extends AppCompatActivity {
             teacherPhone.setText(getIntent().getStringExtra("phone"));
             teacherEmail.setText(getIntent().getStringExtra("email"));
             courseNotes.setText(getIntent().getStringExtra("notes"));
+            startDate.setText(getIntent().getStringExtra("startDate"));
         }
 
         shareNotes.setOnClickListener(view -> {

@@ -48,4 +48,7 @@
     <string name="report_date">Report Date</string>
     <string name="search_teachers">Search Teachers</string>
     <string name="search_contact_list">Search contact list</string>
+    <string name="set_start_date">Set Start Date</string>
+    <string name="start_date">Start Date</string>
+    <string name="teacher">Teacher</string>
 </resources>

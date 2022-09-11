@@ -9,10 +9,14 @@ import com.afenstermaker.c868capstoneproject.Entity.Assignment;
 import com.afenstermaker.c868capstoneproject.databinding.AssignmentListItemBinding;
 import com.afenstermaker.c868capstoneproject.databinding.AssignmentScheduleRowBinding;
 
+import java.text.SimpleDateFormat;
+
 public class AssignmentRowViewHolder extends RecyclerView.ViewHolder {
     final TextView assignmentName;
     final TextView assignmentDate;
     final TextView assignmentCourse;
+    private String dateFormat = "MM/dd/yyyy";
+    private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 
     AssignmentRowViewHolder(AssignmentScheduleRowBinding binding) {
         super(binding.getRoot());
@@ -24,7 +28,7 @@ public class AssignmentRowViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Assignment assignment) {
         assignmentName.setText(assignment.getAssignmentName());
-        assignmentDate.setText(assignment.getAssignmentDate());
+        assignmentDate.setText(sdf.format(assignment.getAssignmentDate()));
         assignmentCourse.setText(assignment.getCourseName());
     }
 }

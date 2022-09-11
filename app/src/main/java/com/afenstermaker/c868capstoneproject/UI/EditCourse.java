@@ -22,6 +22,7 @@ import com.afenstermaker.c868capstoneproject.databinding.ActivityEditCourseBindi
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class EditCourse extends AppCompatActivity {
     private TextView courseID;
@@ -31,6 +32,12 @@ public class EditCourse extends AppCompatActivity {
     private EditText teacherPhone;
     private EditText teacherEmail;
     private EditText courseNotes;
+    private TextView startDate;
+    private Button startDateButton;
+    private String dateFormat = "MM/dd/yyyy";
+    private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+    final Calendar courseDateCalendar = Calendar.getInstance();
+    private DatePickerDialog.OnDateSetListener courseDateSetListener;
     private ActivityEditCourseBinding binding;
 
     @Override
@@ -49,6 +56,8 @@ public class EditCourse extends AppCompatActivity {
         teacherPhone = binding.editTeacherPhone;
         teacherEmail = binding.editTeacherEmail;
         courseNotes = binding.editCourseNotes;
+        startDate = binding.startDateLabel;
+        startDateButton = binding.courseStartButton;
         final Button saveCourse = binding.saveCourseButton;
         final Button cancelCourse = binding.cancelCourseButton;
 
@@ -56,6 +65,7 @@ public class EditCourse extends AppCompatActivity {
             courseID.setText(getIntent().getStringExtra("courseID"));
             courseName.setText(getIntent().getStringExtra("courseName"));
             classroom.setText(getIntent().getStringExtra("classroom"));
+            startDate.setText((int) getIntent().getLongExtra("date", -1));
             teacherName.setText(getIntent().getStringExtra("teacherName"));
             teacherPhone.setText(getIntent().getStringExtra("teacherPhone"));
             teacherEmail.setText(getIntent().getStringExtra("teacherEmail"));
@@ -63,17 +73,17 @@ public class EditCourse extends AppCompatActivity {
         }
 
         saveCourse.setOnClickListener(view -> {
-            Intent replyIntent = new Intent();
-
             if (!validateInput()) {
                 Toast.makeText(getApplicationContext(), "Some values were missing. Course not saved.", Toast.LENGTH_LONG).show();
             } else {
+                Intent replyIntent = new Intent();
                 String name = courseName.getText().toString();
                 String room = classroom.getText().toString();
                 String teacher = teacherName.getText().toString();
                 String phone = teacherPhone.getText().toString();
                 String email = teacherEmail.getText().toString();
                 String notes = courseNotes.getText().toString();
+                Date date = courseDateCalendar.getTime();
 
                 if (!courseID.getText().toString().isEmpty()) {
                     replyIntent.putExtra("courseID", courseID.getText().toString());
@@ -84,10 +94,25 @@ public class EditCourse extends AppCompatActivity {
                 replyIntent.putExtra("phone", phone);
                 replyIntent.putExtra("email", email);
                 replyIntent.putExtra("notes", notes);
+                replyIntent.putExtra("startDate", date.getTime());
 
                 setResult(RESULT_OK, replyIntent);
                 finish();
             }
+        });
+
+        courseDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
+            courseDateCalendar.set(android.icu.util.Calendar.YEAR, year);
+            courseDateCalendar.set(android.icu.util.Calendar.MONTH, monthOfYear);
+            courseDateCalendar.set(android.icu.util.Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateDateLabel();
+        };
+
+        startDateButton.setOnClickListener(v -> {
+            new DatePickerDialog(EditCourse.this, courseDateSetListener,
+                                 courseDateCalendar.get(android.icu.util.Calendar.YEAR),
+                                 courseDateCalendar.get(android.icu.util.Calendar.MONTH),
+                                 courseDateCalendar.get(android.icu.util.Calendar.DAY_OF_MONTH)).show();
         });
 
         cancelCourse.setOnClickListener(view -> {
@@ -110,24 +135,30 @@ public class EditCourse extends AppCompatActivity {
             courseName.setError("Course name is required");
             return false;
         }
-        else if (classroom.getText().toString().trim().isEmpty()) {
+        if (classroom.getText().toString().trim().isEmpty()) {
             classroom.setError("Classroom is required");
             return false;
         }
-        else if (teacherName.getText().toString().trim().isEmpty()) {
+        if (teacherName.getText().toString().trim().isEmpty()) {
             teacherName.setError("Teacher name is required");
             return false;
         }
-        else if (teacherPhone.getText().toString().trim().isEmpty()) {
+        if (teacherPhone.getText().toString().trim().isEmpty()) {
             teacherPhone.setError("Teacher phone number is required");
             return false;
         }
-        else if (teacherEmail.getText().toString().trim().isEmpty()) {
+        if (teacherEmail.getText().toString().trim().isEmpty()) {
             teacherEmail.setError("Teacher email address is required");
             return false;
         }
-        else {
-            return true;
+        if (startDate.getText().toString().isEmpty()) {
+            startDate.setError("Start date is required");
+            return false;
         }
+        return true;
+    }
+
+    private void updateDateLabel() {
+        startDate.setText(sdf.format(courseDateCalendar.getTime()));
     }
 }

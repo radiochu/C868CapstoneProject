@@ -3,6 +3,8 @@ package com.afenstermaker.c868capstoneproject.Entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(tableName = "assignment")
 public class Assignment {
     @PrimaryKey(autoGenerate = true)
@@ -11,9 +13,9 @@ public class Assignment {
     private int courseID;
     private String assignmentName;
     private String assignmentType;
-    private String assignmentDate;
+    private Date assignmentDate;
 
-    public Assignment(int assignmentID, String courseName, int courseID, String assignmentName, String assignmentType, String assignmentDate) {
+    public Assignment(int assignmentID, String courseName, int courseID, String assignmentName, String assignmentType, Date assignmentDate) {
         this.assignmentID = assignmentID;
         this.courseName = courseName;
         this.courseID = courseID;
@@ -62,11 +64,11 @@ public class Assignment {
         this.assignmentType = assignmentType;
     }
 
-    public String getAssignmentDate() {
+    public Date getAssignmentDate() {
         return assignmentDate;
     }
 
-    public void setAssignmentDate(String assignmentDate) {
+    public void setAssignmentDate(Date assignmentDate) {
         this.assignmentDate = assignmentDate;
     }
 }

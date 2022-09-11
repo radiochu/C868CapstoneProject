@@ -45,4 +45,8 @@ public class CourseViewModel extends AndroidViewModel {
     public LiveData<List<Course>> searchCourses(String searchQuery) {
         return repo.searchCourses(searchQuery);
     }
+
+    public LiveData<List<Course>> getCoursesByDate() {
+        return repo.getCoursesByDate();
+    }
 }

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(tableName = "course")
 public class Course {
     @PrimaryKey(autoGenerate = true)
@@ -14,8 +16,9 @@ public class Course {
     private String teacherPhone;
     private String teacherEmail;
     private String courseNotes;
+    private Date startDate;
 
-    public Course(int courseID, String courseName, String classroom, String teacherName, String teacherPhone, String teacherEmail, String courseNotes) {
+    public Course(int courseID, String courseName, String classroom, String teacherName, String teacherPhone, String teacherEmail, String courseNotes, Date startDate) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.classroom = classroom;
@@ -23,6 +26,7 @@ public class Course {
         this.teacherPhone = teacherPhone;
         this.teacherEmail = teacherEmail;
         this.courseNotes = courseNotes;
+        this.startDate = startDate;
     }
 
     public int getCourseID() {
@@ -79,6 +83,14 @@ public class Course {
 
     public void setCourseNotes(String courseNotes) {
         this.courseNotes = courseNotes;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     @NonNull

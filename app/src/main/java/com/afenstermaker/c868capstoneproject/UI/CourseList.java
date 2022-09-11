@@ -1,9 +1,5 @@
 package com.afenstermaker.c868capstoneproject.UI;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,12 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.afenstermaker.c868capstoneproject.Entity.Assignment;
 import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.R;
 import com.afenstermaker.c868capstoneproject.ViewModel.CourseViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityCourseListBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Date;
 
 public class CourseList extends AppCompatActivity {
     private ActivityCourseListBinding binding;
@@ -54,6 +51,7 @@ public class CourseList extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
+            Date startDate = new Date(data.getLongExtra("startDate", -1));
             Course course = new Course(
                     0,
                     data.getStringExtra("name"),
@@ -61,8 +59,8 @@ public class CourseList extends AppCompatActivity {
                     data.getStringExtra("teacher"),
                     data.getStringExtra("phone"),
                     data.getStringExtra("email"),
-                    data.getStringExtra("notes")
-            );
+                    data.getStringExtra("notes"),
+                    startDate);
             course.setCourseID(courseViewModel.insert(course));
         }
     }

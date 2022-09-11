@@ -38,13 +38,13 @@ public class Reports extends AppCompatActivity {
             }
         });
 
-//        courseScheduleReport.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Reports.this, CourseScheduleReport.class);
-//                startActivity(intent);
-//            }
-//        });
+        courseScheduleReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Reports.this, ClassScheduleReport.class);
+                startActivity(intent);
+            }
+        });
 
         teacherContactReport.setOnClickListener(new View.OnClickListener() {
             @Override
