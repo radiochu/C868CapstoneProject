@@ -1,4 +1,4 @@
-package com.afenstermaker.c868capstoneproject.UI.Course;
+package com.afenstermaker.c868capstoneproject.UI.Reports;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

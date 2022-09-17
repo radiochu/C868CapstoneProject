@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.afenstermaker.c868capstoneproject.R;
-import com.afenstermaker.c868capstoneproject.UI.Course.ContactListAdapter;
 import com.afenstermaker.c868capstoneproject.ViewModel.CourseViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityContactListReportBinding;
 
