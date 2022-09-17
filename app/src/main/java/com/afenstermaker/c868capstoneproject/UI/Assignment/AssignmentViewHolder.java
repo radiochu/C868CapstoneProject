@@ -1,10 +1,9 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Assignment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 

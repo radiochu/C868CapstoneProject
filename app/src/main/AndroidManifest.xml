@@ -14,20 +14,20 @@
             android:theme="@style/Theme.C868CapstoneProject"
             tools:targetApi="31">
         <activity
-                android:name=".UI.ContactListReport"
+                android:name=".UI.Reports.ContactListReport"
                 android:exported="false"
                 android:label="Contact List Report"
-                android:parentActivityName=".UI.Reports"/>
+                android:parentActivityName=".UI.Reports.Reports"/>
         <activity
-                android:name=".UI.AssignmentScheduleReport"
+                android:name=".UI.Reports.AssignmentScheduleReport"
                 android:exported="false"
                 android:label="Assignment Schedule Report"
-                android:parentActivityName=".UI.Reports"/>
+                android:parentActivityName=".UI.Reports.Reports"/>
         <activity
-                android:name=".UI.ClassScheduleReport"
+                android:name=".UI.Reports.ClassScheduleReport"
                 android:exported="false"
                 android:label="Class Schedule Report"
-                android:parentActivityName=".UI.Reports"/>
+                android:parentActivityName=".UI.Reports.Reports"/>
 
         <receiver
                 android:name=".AlarmReceiver"
@@ -35,37 +35,37 @@
                 android:exported="true" />
 
         <activity
-                android:name=".UI.CourseDetail"
+                android:name=".UI.Course.CourseDetail"
                 android:exported="false"
                 android:label="View Class"
-                android:parentActivityName=".UI.CourseList" />
+                android:parentActivityName=".UI.Course.CourseList" />
         <activity
-                android:name=".UI.EditCourse"
+                android:name=".UI.Course.EditCourse"
                 android:exported="false"
                 android:label="Edit Class"
-                android:parentActivityName=".UI.CourseDetail" />
+                android:parentActivityName=".UI.Course.CourseDetail" />
         <activity
-                android:name=".UI.EditAssignment"
+                android:name=".UI.Assignment.EditAssignment"
                 android:exported="false"
                 android:label="Edit Assignment"
-                android:parentActivityName=".UI.AssignmentDetail" />
+                android:parentActivityName=".UI.Assignment.AssignmentDetail" />
         <activity
-                android:name=".UI.AssignmentDetail"
+                android:name=".UI.Assignment.AssignmentDetail"
                 android:exported="false"
                 android:label="View Assignment"
-                android:parentActivityName=".UI.AssignmentList" />
+                android:parentActivityName=".UI.Assignment.AssignmentList" />
         <activity
-                android:name=".UI.Reports"
+                android:name=".UI.Reports.Reports"
                 android:exported="false"
                 android:label="Reports"
                 android:parentActivityName=".MainActivity" />
         <activity
-                android:name=".UI.AssignmentList"
+                android:name=".UI.Assignment.AssignmentList"
                 android:exported="false"
                 android:label="All Assignments"
                 android:parentActivityName=".MainActivity" />
         <activity
-                android:name=".UI.CourseList"
+                android:name=".UI.Course.CourseList"
                 android:exported="false"
                 android:label="All Classes"
                 android:parentActivityName=".MainActivity" />

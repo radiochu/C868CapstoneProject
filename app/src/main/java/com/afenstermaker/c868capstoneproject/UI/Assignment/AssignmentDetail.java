@@ -1,4 +1,4 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Assignment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;

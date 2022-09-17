@@ -1,8 +1,7 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Course;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -12,7 +11,6 @@ import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.databinding.CourseListItemBinding;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class CourseViewHolder extends RecyclerView.ViewHolder {
     final TextView courseName;

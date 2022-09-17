@@ -1,26 +1,21 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Course;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afenstermaker.c868capstoneproject.R;
-import com.afenstermaker.c868capstoneproject.ViewModel.CourseViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityEditCourseBinding;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 

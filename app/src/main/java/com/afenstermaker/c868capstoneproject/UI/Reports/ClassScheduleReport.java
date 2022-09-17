@@ -1,4 +1,4 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Reports;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.afenstermaker.c868capstoneproject.R;
+import com.afenstermaker.c868capstoneproject.UI.Course.ClassScheduleAdapter;
 import com.afenstermaker.c868capstoneproject.ViewModel.CourseViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityClassScheduleReportBinding;
 

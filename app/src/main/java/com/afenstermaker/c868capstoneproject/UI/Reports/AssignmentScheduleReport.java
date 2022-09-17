@@ -1,4 +1,4 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Reports;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -10,13 +10,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.afenstermaker.c868capstoneproject.R;
+import com.afenstermaker.c868capstoneproject.UI.Assignment.AssignmentScheduleAdapter;
 import com.afenstermaker.c868capstoneproject.ViewModel.AssignmentViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityAssignmentScheduleReportBinding;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 

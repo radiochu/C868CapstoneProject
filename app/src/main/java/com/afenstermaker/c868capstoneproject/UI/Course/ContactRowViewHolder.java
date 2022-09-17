@@ -1,4 +1,4 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Course;
 
 import android.widget.TextView;
 

@@ -1,30 +1,21 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Assignment;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 
 import com.afenstermaker.c868capstoneproject.Entity.Assignment;
-import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.R;
 import com.afenstermaker.c868capstoneproject.ViewModel.AssignmentViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityAssignmentListBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 
 public class AssignmentList extends AppCompatActivity {
     private ActivityAssignmentListBinding binding;

@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.afenstermaker.c868capstoneproject.UI.AssignmentList;
-import com.afenstermaker.c868capstoneproject.UI.CourseList;
-import com.afenstermaker.c868capstoneproject.UI.Reports;
+import com.afenstermaker.c868capstoneproject.UI.Assignment.AssignmentList;
+import com.afenstermaker.c868capstoneproject.UI.Course.CourseList;
+import com.afenstermaker.c868capstoneproject.UI.Reports.Reports;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,35 +1,34 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Course;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.afenstermaker.c868capstoneproject.Entity.Course;
-import com.afenstermaker.c868capstoneproject.databinding.ContactListRowBinding;
+import com.afenstermaker.c868capstoneproject.databinding.ClassScheduleRowBinding;
 
-public class ContactListAdapter extends ListAdapter<Course, ContactRowViewHolder> {
-    public ContactListAdapter(@NonNull DiffUtil.ItemCallback<Course> diffCallback) {
+public class ClassScheduleAdapter extends ListAdapter<Course, CourseRowViewHolder> {
+    public ClassScheduleAdapter(@NonNull DiffUtil.ItemCallback<Course> diffCallback) {
         super(diffCallback);
     }
 
     @NonNull
     @Override
-    public ContactRowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ContactListRowBinding binding = ContactListRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new ContactRowViewHolder(binding);
+    public CourseRowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        ClassScheduleRowBinding binding = ClassScheduleRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new CourseRowViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(ContactRowViewHolder holder, int position) {
+    public void onBindViewHolder(CourseRowViewHolder holder, int position) {
         Course current = getItem(position);
         holder.bind(current);
     }
 
-    static class ContactDiff extends DiffUtil.ItemCallback<Course> {
+    public static class CourseDiff extends DiffUtil.ItemCallback<Course> {
         @Override
         public boolean areItemsTheSame(@NonNull Course oldCourse, @NonNull Course newCourse) {
             return oldCourse == newCourse;

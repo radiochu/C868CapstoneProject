@@ -1,4 +1,4 @@
-package com.afenstermaker.c868capstoneproject.UI;
+package com.afenstermaker.c868capstoneproject.UI.Assignment;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afenstermaker.c868capstoneproject.Entity.Course;
 import com.afenstermaker.c868capstoneproject.R;
 import com.afenstermaker.c868capstoneproject.ViewModel.CourseViewModel;
 import com.afenstermaker.c868capstoneproject.databinding.ActivityEditAssignmentBinding;
