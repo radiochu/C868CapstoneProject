@@ -15,13 +15,19 @@
             tools:targetApi="31">
         <activity
                 android:name=".UI.ContactListReport"
-                android:exported="false" />
+                android:exported="false"
+                android:label="Contact List Report"
+                android:parentActivityName=".UI.Reports"/>
         <activity
                 android:name=".UI.AssignmentScheduleReport"
-                android:exported="false" />
+                android:exported="false"
+                android:label="Assignment Schedule Report"
+                android:parentActivityName=".UI.Reports"/>
         <activity
                 android:name=".UI.ClassScheduleReport"
-                android:exported="false" />
+                android:exported="false"
+                android:label="Class Schedule Report"
+                android:parentActivityName=".UI.Reports"/>
 
         <receiver
                 android:name=".AlarmReceiver"
@@ -31,14 +37,17 @@
         <activity
                 android:name=".UI.CourseDetail"
                 android:exported="false"
+                android:label="View Class"
                 android:parentActivityName=".UI.CourseList" />
         <activity
                 android:name=".UI.EditCourse"
                 android:exported="false"
+                android:label="Edit Class"
                 android:parentActivityName=".UI.CourseDetail" />
         <activity
                 android:name=".UI.EditAssignment"
                 android:exported="false"
+                android:label="Edit Assignment"
                 android:parentActivityName=".UI.AssignmentDetail" />
         <activity
                 android:name=".UI.AssignmentDetail"
@@ -58,6 +67,7 @@
         <activity
                 android:name=".UI.CourseList"
                 android:exported="false"
+                android:label="All Classes"
                 android:parentActivityName=".MainActivity" />
         <activity
                 android:name=".MainActivity"
