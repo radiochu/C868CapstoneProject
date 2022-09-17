@@ -16,7 +16,6 @@ public class Repository {
     private final AssignmentDAO assignmentDAO;
     private final LiveData<List<Course>> mAllCourses;
     private final LiveData<List<Assignment>> mAllAssignments;
-    private final LiveData<List<String>> mAllCourseNames;
 
     public Repository(Application application) {
         DatabaseBuilder db = DatabaseBuilder.getDatabase(application);
@@ -24,7 +23,6 @@ public class Repository {
         assignmentDAO = db.assignmentDAO();
         mAllCourses = courseDAO.getAllCourses();
         mAllAssignments = assignmentDAO.getAllAssignments();
-        mAllCourseNames = courseDAO.getAllCourseNames();
     }
 
     public LiveData<List<Course>> getAllCourses() {
@@ -45,14 +43,6 @@ public class Repository {
 
     public Assignment getAssignmentByID(int assignmentID) {
         return assignmentDAO.getAssignmentByID(assignmentID);
-    }
-
-    public LiveData<List<Integer>> getAllCourseIDs() {
-        return courseDAO.getAllCourseIDs();
-    }
-
-    public LiveData<List<String>> getAllCourseNames() {
-        return mAllCourseNames;
     }
 
     public void insertCourse(Course course) {
