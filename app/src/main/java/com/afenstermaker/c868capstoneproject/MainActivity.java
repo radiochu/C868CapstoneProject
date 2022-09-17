@@ -15,7 +15,7 @@ import com.afenstermaker.c868capstoneproject.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Button toCourseList;
-    private Button toAssessmentList;
+    private Button toAssignmentList;
     private Button toReports;
     public static int alertNum;
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(viewToBind);
 
         toCourseList = binding.myClassesButton;
-        toAssessmentList = binding.myAssignmentsButton;
+        toAssignmentList = binding.myAssignmentsButton;
         toReports = binding.reportsButton;
 
         toCourseList.setOnClickListener(v -> {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        toAssessmentList.setOnClickListener(v -> {
+        toAssignmentList.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AssignmentList.class);
             startActivity(intent);
         });
