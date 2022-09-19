@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -159,9 +160,8 @@ public class EditAssignment extends AppCompatActivity {
             assignmentDate.setError("Assignment due date is required");
             return false;
         }
-        if (assignmentClass.getSelectedItem().toString().isEmpty()) {
-            TextView errorText = (TextView)assignmentClass.getSelectedView();
-            errorText.setError("Assignment course is required");
+        if (assignmentClass.getSelectedItem() == null || TextUtils.isEmpty(assignmentClass.getSelectedItem().toString())) {
+            Toast.makeText(this, "No class selected! Please add classes first", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
